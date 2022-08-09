@@ -14,13 +14,13 @@ const Genres = db.Genre;
 const Actors = db.Actor;
 
 const moviesController = {
-    'list': (req, res) => {
+    list: (req, res) => {
         db.Movie.findAll()
             .then(movies => {
                 res.render('moviesList.ejs', {movies})
             })
     },
-    'detail': (req, res) => {
+    detail: (req, res) => {
         db.Movie.findByPk(req.params.id, {
             include : [{association:"genre"}, {association:"actors"}]}
             )
@@ -28,7 +28,7 @@ const moviesController = {
                 res.render('moviesDetail.ejs', {movie});
             });
     },
-    'new': (req, res) => {
+    new: (req, res) => {
         db.Movie.findAll({
             order : [
                 ['release_date', 'DESC']
@@ -39,7 +39,7 @@ const moviesController = {
                 res.render('newestMovies', {movies});
             });
     },
-    'recomended': (req, res) => {
+    recomended: (req, res) => {
         db.Movie.findAll({
             where: {
                 rating: {[db.Sequelize.Op.gte] : 8}
@@ -52,9 +52,8 @@ const moviesController = {
                 res.render('recommendedMovies.ejs', {movies});
             });
     },
-    //Crear
     add: function (req, res) {
-       db.Genre.findAll()//se traen los generos de la db para compartir con el formulario de creacion y poder seleccionarlo en la vista
+       db.Actor.findAll()//se traen los generos de la db para compartir con el formulario de creacion y poder seleccionarlo en la vista
        .then(function(generos){
        return res.render("moviesAdd", {allGenres : generos})})
     },
@@ -73,8 +72,6 @@ const moviesController = {
         });//luego redireccionamos al listado principal de movies
         res.redirect("/movies")}
     },            
-        
-    
     edit: function(req,res) {
         //Debo pedir peliculas y debo pedir generos, dos pedidos asincronicos
         let pedidoPelicula = db.Movie.findByPk(req.params.id, { include: ["genre"]}); //busco la pelicula cuyo id llega por params y la guardo en una variable       
@@ -107,5 +104,4 @@ const moviesController = {
         res.redirect("/movies/")
     }
 }
-
 module.exports = moviesController;

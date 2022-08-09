@@ -1,0 +1,29 @@
+<%- include("header.ejs") -%>
+    <br>
+    <h1 class="titulo">Agregar Actor</h1>
+    <br>
+
+    <section class="formulario">
+        <form action="/actors/create" method="POST">
+            <label for="title">Nombre </label>
+            <p><input type="text" name="first_name" id="" value="<%= locals.oldData ? oldData.first_name : null%>"></p>
+            <% if (locals.errors && errors.first_name) { %>
+                <p class="mensaje-error"><%= errors.first_name.msg %> </p>   
+            <% } %>
+            <label for="title">Apellido </label>
+            <p><input type="text" name="last_name" id="" value="<%= locals.oldData ? oldData.last_name : null%>"></p>
+            <% if (locals.errors && errors.last_name) { %>
+                <p class="mensaje-error"><%= errors.last_name.msg %> </p>   
+            <% } %>
+            <label for="rating">Rating </label>
+            <p><input type="number" name="rating" id="" value="<%= locals.oldData ? oldData.rating : null%>"> </p>
+            <% if (locals.errors && errors.rating) { %>
+                <p class="mensaje-error"><%= errors.rating.msg %> </p>   
+            <% } %>      
+            <br>
+            <p> <button class="botonAgregar" type="submit">Agregar</button>
+            
+            <a  class="botonVolver" href="/actors">Listado de Actores</a></p>
+        </form>
+    </section>
+<%- include("footer.ejs") -%>
