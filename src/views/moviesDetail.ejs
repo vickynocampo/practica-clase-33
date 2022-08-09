@@ -1,0 +1,32 @@
+<%- include("header.ejs") -%>
+    <h1>
+        <%= movie.title %>
+    </h1>
+    <br>
+    <p>RATING: <%= movie.rating %>
+    </p>
+    <p>AWARDS: <%= movie.awards %>
+    </p>
+    <p>LENGTH: <%= movie.length + ' min' %>
+    </p>
+    <p>RELEASE DATE: <%= movie.release_date %>
+    </p>
+    <p>GENERO: <%= movie.genre.name %>
+    </p>
+    <p>ACTORES:</p>
+    <ul style="list-style-type: none;">
+        <% for (let i = 0; i < movie.actors.length; i++ ) { %> 
+        <li>
+            <%= movie.actors[i].first_name%> <%= movie.actors[i].last_name%> 
+        </li>
+        <% } %>
+    </ul>
+    <br>
+    <section>
+        <!--Aquí debe colocar los botones de Modificar - Borrar y Listado de Películas-->
+        <a class="botonAgregar" href="/movies/edit/<%= movie.id %>">Modificar Pelicula</a>
+        <a class="botonAgregar" href="/movies/delete/<%= movie.id %>">Borrar Pelicula</a>
+        <a class="botonAgregar" href="/movies/add">Agregar Pelicula</a>
+        <a class="botonVolver" href="/movies">Listado de Películas</a></p>
+    </section>
+<%- include("footer.ejs") -%>

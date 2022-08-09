@@ -1,0 +1,12 @@
+<%- include("header.ejs") -%>
+    <h1>PELIÍCULAS ORDENADASR FECHA</h1>
+    <ul>
+        <% for( let i = 0; i < movies.length; i++ ) { %>
+        <li>
+            <a href="/movies/detail/<%=movies[i].id%>"><%= movies[i].title %> </a> <br>
+            <%= 'RELEASE DATE: ' + movies[i].release_date %> 
+        </li>
+        <% } %>
+        
+    </ul>
+<%- include("footer.ejs") -%>
