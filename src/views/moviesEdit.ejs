@@ -1,7 +1,7 @@
 <%- include("header.ejs") -%>
     <h1 class="titulo">Película Editada:  <%= Movie.title %></h1>
     <section class="formulario">
-        <form action="/movies/update/<%= Movie.id %>" method="POST">
+        <form action="/movies/update/<%= Movie.id %>?_method=PUT" method="POST">
             <label for="title">Title </label>
             <p><input type="text" name="title" id="" value="<%= Movie.title %>" required></p>
             <label for="rating">Rating </label>
@@ -10,6 +10,10 @@
             <p><input type="number" name="awards" id="" value="<%= Movie.awards %>" required></p>
             <label for="release_date">Release date </label>
             <p><input type="date" name="release_date" id="" value="<%= Movie.release_date %> required"></p>
+            <!-- <label for="release_date">Release date </label>
+            <p><input type="date" name="release_date" id=""
+            value="<%= parseDate.year %>-<%= parseDate.month %>-<%= parseDate.date %>"
+            required></p> -->
             <label for="length">Length </label>
             <p><input type="number" name="length" id="" value="<%= Movie.length %>" required></p>
             <label for="genre_id">Genre </label>

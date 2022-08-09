@@ -97,8 +97,7 @@ const moviesController = {
     },    
     destroy: function (req,res) {
         db.Movie.destroy({where: {id: req.params.id}})
-        .then(movie => {res.redirect('/movies/', {Movie: movie});
-        })
+        res.redirect("/movies/")
     }
 }
 

@@ -16,10 +16,10 @@ router.get('/movies/detail/:id', moviesController.detail);
 
 //Update
 router.get('/movies/edit/:id', moviesController.edit);
-router.post('/movies/update/:id', moviesController.update);
+router.put('/movies/update/:id', moviesController.update);
 
 //Delete
 router.get('/movies/delete/:id', moviesController.delete);
-router.post('/movies/delete/:id', moviesController.destroy);
+router.delete('/movies/delete/:id', moviesController.destroy);
 
 module.exports = router;
