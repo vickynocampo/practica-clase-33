@@ -40,38 +40,29 @@ const actorsController = {
         });//luego redireccionamos al listado principal de movies
          res.redirect("/actors")}
      },        
-     edit: function(req,res) {
-         //Debo pedir peliculas y debo pedir generos, dos pedidos asincronicos
-         let pedidoPelicula = db.Movie.findByPk(req.params.id, { include: ["genre"]}); //busco la pelicula cuyo id llega por params y la guardo en una variable       
-         let pedidosGeneros = db.Genre.findAll({raw:true}); 
-         // //una vez que tengo los dos pedidos async me aseguro que se ejecuten juntos:
-         Promise.all([pedidoPelicula, pedidosGeneros])
-         .then(function([pelicula, generos]){
-              res.render("moviesEdit", {Movie: pelicula, allGenres : generos})
-         })
+     edit: async function(req,res) {
+         //Debo pedir los actores
+         let pedidoActor = await db.Actor.findByPk(req.params.id); //busco el actor cuyo id llega por params y la guardo en una variable       
+         return res.render("actorEdit", {Actor: pedidoActor})
      },
      update: function (req,res) {       
-         db.Movie.update({
-             title: req.body.title,
+         db.Actor.update({
+             first_name: req.body.first_name,
+             last_name: req.body.last_name,
              rating: req.body.rating,
-             awards: req.body.awards,
-             release_date: req.body.release_date,
-             length: req.body.length,
-             genre_id: req.body.genre_id     
-         }, {where: {id: req.params.id}
+            }, {where: {id: req.params.id}
          });
-         res.redirect("/movies/")
+         res.redirect("/actors/")
      },
      delete: async function (req,res) {
-        const movie =  await db.Movie
+        const actor =  await db.Actor
              .findByPk(req.params.id)        
-             res.render('moviesDelete', { Movie: movie });
+             res.render('actorsDelete', { Actor: actor });
      },    
      destroy: function (req,res) {
-         db.Movie.destroy({where: {id: req.params.id}})
-         res.redirect("/movies/")
+         db.Actor.destroy({where: {id: req.params.id}})
+         res.redirect("/actors/")
      }
-
 }
 
 module.exports = actorsController;

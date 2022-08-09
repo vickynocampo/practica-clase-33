@@ -1,0 +1,18 @@
+<%- include("header.ejs") -%>
+    <br>
+    <h1 class="titulo">Actor Editado:  <%= Actor.first_name %> <%= Actor.last_name %></h1>
+    <section class="formulario">
+        <form action="/actors/update/<%= Actor.id %>?_method=PUT" method="POST">
+            <label for="title">Nombre </label>
+            <p><input type="text" name="first_name" id="" value="<%= Actor.first_name %>" required></p>
+            <label for="title">Apellido </label>
+            <p><input type="text" name="last_name" id="" value="<%= Actor.last_name %>" required></p>
+            <label for="rating">Rating </label>
+            <p><input type="number" name="rating" id="" value="<%= Actor.rating %>" required></p>       
+            <br>
+            <p> <button class="botonAgregar" type="submit">Actualizar</button>
+        
+            <a  class="botonVolver" href="/actors">Listado de Actores</a></p>
+        </form>
+    </section>
+<%- include("footer.ejs") -%>

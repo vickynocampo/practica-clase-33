@@ -17,11 +17,11 @@ router.get('/actors', actorsController.list);
 router.get('/actors/detail/:id', actorsController.detail);
 
 //Update
-// router.get('/actors/edit/:id', actorsController.edit);
-// router.put('/actors/update/:id', actorsController.update);
+router.get('/actors/edit/:id', actorsController.edit);
+router.put('/actors/update/:id', actorsController.update);
 
 //Delete
-// router.get('/actors/delete/:id', actorsController.delete);
-// router.delete('/actors/delete/:id', actorsController.destroy);
+router.get('/actors/delete/:id', actorsController.delete);
+router.delete('/actors/delete/:id', actorsController.destroy);
 
 module.exports = router;
