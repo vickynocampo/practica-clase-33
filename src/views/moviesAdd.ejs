@@ -1,27 +1,50 @@
 <%- include("header.ejs") -%>
+    <br>
     <h1 class="titulo">Agregar Película</h1>
     <br>
+
     <section class="formulario">
         <form action="/movies/create" method="POST">
             <label for="title">Title </label>
-            <p><input type="text" name="title" id="" required></p>
+            <p><input type="text" name="title" id="" value="<%= locals.oldData ? oldData.title : null%>"></p>
+            <% if (locals.errors && errors.title) { %>
+                <p class="mensaje-error"><%= errors.title.msg %> </p>   
+            <% } %>
             <label for="rating">Rating </label>
-            <p><input type="number" name="rating" id="" required> </p>
+            <p><input type="number" name="rating" id="" value="<%= locals.oldData ? oldData.rating : null%>"> </p>
+            <% if (locals.errors && errors.rating) { %>
+                <p class="mensaje-error"><%= errors.rating.msg %> </p>   
+            <% } %>
             <label for="awards">Awards </label>
-            <p><input type="number" name="awards" id="" required></p>
+            <p><input type="number" name="awards" id="" value="<%= locals.oldData ? oldData.awards : null%>"></p>
+            <% if (locals.errors && errors.awards) { %>
+                <p class="mensaje-error"><%= errors.awards.msg %> </p>   
+            <% } %>
+            
             <label for="release_date">Release date </label>
-            <p><input type="date" name="release_date" id="" required></p>
+            <p><input type="date" name="release_date" id="" ></p>
+       
             <label for="length">Length </label>
-            <p><input type="number" name="length" id="" required></p>
+            <p><input type="number" name="length" id="" value="<%= locals.oldData ? oldData.length : null%>"></p>
+            <% if (locals.errors && errors.length) { %>
+                <p class="mensaje-error"><%= errors.length.msg %> </p>   
+            <% } %>
+
             <label for="genreID">Genre </label>
             <p>
-                <select name="genre_id" id="" required>
+                <select name="genre_id" id="">
                     <option value="" disabled selected>- select genre - </option>
                     <% allGenres.forEach(genre => { %>
-                    <option value="<%= genre.id %>"><%= genre.name %></option>
-                    <% }); %>
+                    <option 
+                    value="<%= genre.id %>"
+                    <!-- <%= locals.oldData && ("genre_id" === oldData.genre_id) ? selected : null %> -->
+                    ><%= genre.name %></option>
+                    <% }); %> -->
                     <!-- dentro del select estan todos los generos compartidos del metodo add -->
                 </select>
+                <% if (locals.errors && errors.genre_id) { %>
+                    <p class="mensaje-error"><%= errors.genre_id.msg %> </p>   
+                <% } %>
             </p>
             <br>
             <p> <button class="botonAgregar" type="submit">Agregar</button>

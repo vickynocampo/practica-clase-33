@@ -2,7 +2,8 @@ const path = require('path');
 const db = require('../database/models');
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
-
+const {validationResult} = require("express-validator");
+const { all } = require('../routes');
 
 //Aqui tienen una forma de llamar a cada uno de los modelos
 // const {Movies,Genres,Actor} = require('../database/models');
@@ -57,17 +58,23 @@ const moviesController = {
        .then(function(generos){
        return res.render("moviesAdd", {allGenres : generos})})
     },
-    create: function (req,res) {
-        db.Movie.create({
+    create: async function (req,res) {
+       const allGenres = await db.Genre.findAll();
+       const resultValidation = validationResult(req);   
+       if(resultValidation.errors.length > 0){
+        return res.render("moviesAdd", {errors:resultValidation.mapped(), allGenres:allGenres, oldData: req.body})}
+        else{db.Movie.create({//Utilizamos el metodo create dentro de db/sequelize para guardar los datos que llegan en el body
             title: req.body.title,
             rating: req.body.rating,
             awards: req.body.awards,
             release_date: req.body.release_date,
             length: req.body.length,
             genre_id: req.body.genre_id      
-        });//Utilizamos el metodo create dentro de db/sequelize para guardar los datos que llegan en el body
-        res.redirect("/movies");//luego redireccionamos al listado principal de movies
-    },
+        });//luego redireccionamos al listado principal de movies
+        res.redirect("/movies")}
+    },            
+        
+    
     edit: function(req,res) {
         //Debo pedir peliculas y debo pedir generos, dos pedidos asincronicos
         let pedidoPelicula = db.Movie.findByPk(req.params.id, { include: ["genre"]}); //busco la pelicula cuyo id llega por params y la guardo en una variable       
