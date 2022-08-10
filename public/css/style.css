@@ -4,14 +4,20 @@
   padding: 0;
 }
 
+html{
+  width: 90%;
+  margin: auto;
+}
+
 body {
-  width: 98%;
+  max-width: 100%;
   margin: auto;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 ul{
   list-style-type: none;
+  margin-left: 5px;
 }
 
 header {
@@ -29,30 +35,36 @@ a {
 img{
   width: 100%;
 }
+
 figure{
   width: 20%;
 }
+
 .titulo{
   text-align: center;
 }
+
 .botonAgregar , .botonModificar{
   color: white;
   background-color: green;
   padding: 10px;
   border-radius: 10px;
 }
+
 .botonBorrar{
   color: white;
   background-color: red;
   padding: 10px;
   border-radius: 10px;
 }
+
 .botonVolver{
   color: white;
   background-color: #00B7FF;
   padding: 10px;
   border-radius: 10px;
 }
+
 .formulario{
   margin: auto;
   width: 20%;
@@ -74,4 +86,14 @@ nav ul li a {
   color: tomato;
   font-size: 12px;
   font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  margin: auto;
+  height: 25px;
+  margin: 3px auto;
+  border-radius: 5px;
+  border: solid 1px lightgrey
 }

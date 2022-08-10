@@ -5,10 +5,6 @@ const { Op } = require("sequelize");
 const {validationResult} = require("express-validator");
 const { all } = require('../routes');
 
-//Aqui tienen una forma de llamar a cada uno de los modelos
-// const {Movies,Genres,Actor} = require('../database/models');
-
-//Aquí tienen otra forma de llamar a los modelos creados
 const Movies = db.Movie;
 const Genres = db.Genre;
 const Actors = db.Actor;
@@ -53,7 +49,7 @@ const moviesController = {
             });
     },
     add: function (req, res) {
-       db.Actor.findAll()//se traen los generos de la db para compartir con el formulario de creacion y poder seleccionarlo en la vista
+       db.Genre.findAll()//se traen los generos de la db para compartir con el formulario de creacion y poder seleccionarlo en la vista
        .then(function(generos){
        return res.render("moviesAdd", {allGenres : generos})})
     },

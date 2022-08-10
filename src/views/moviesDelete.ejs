@@ -1,6 +1,6 @@
 <%- include("header.ejs") -%>
     <br>
-    <h1>Estas seguro de querer borrar esta película: <%= Movie.title %>???</h1>
+    <h1>Estas seguro de querer borrar la película <%= Movie.title %>?</h1>
     <p>
         <form action="/movies/delete/<%= Movie.id %>?_method=DELETE" method="POST">
             <br>

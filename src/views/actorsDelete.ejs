@@ -1,6 +1,6 @@
 <%- include("header.ejs") -%>
     <br>
-    <h1>Estas seguro de querer borrar este actor: <%= Actor.first_name %> <%= Actor.last_name %> </h1>
+    <h1>Estas seguro de querer borrar el actor <%= Actor.first_name %> <%= Actor.last_name %>?</h1>
     <p>
         <form action="/actors/delete/<%= Actor.id %>?_method=DELETE" method="POST">
             <br>
