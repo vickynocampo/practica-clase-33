@@ -5,10 +5,6 @@ const { Op } = require("sequelize");
 const {validationResult} = require("express-validator");
 const { all } = require('../routes');
 
-//Aqui tienen una forma de llamar a cada uno de los modelos
-// const {Movies,Genres,Actor} = require('../database/models');
-
-//Aquí tienen otra forma de llamar a los modelos creados
 const Movies = db.Movie;
 const Genres = db.Genre;
 const Actors = db.Actor;
@@ -37,7 +33,7 @@ const actorsController = {
              first_name: req.body.first_name,
              last_name: req.body.last_name,
              rating: req.body.rating,
-        });//luego redireccionamos al listado principal de movies
+        });//luego redireccionamos al listado principal de actors
          res.redirect("/actors")}
      },        
      edit: async function(req,res) {

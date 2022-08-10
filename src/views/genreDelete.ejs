@@ -1,0 +1,13 @@
+<%- include("header.ejs") -%>
+    <br>
+    <h1>Estas seguro de querer borrar el genero <%= Genre.name %>?</h1>
+    <p>
+        <form action="/genres/delete/<%= Genre.id %>?_method=DELETE" method="POST">
+            <br>
+            <p> <button class="botonBorrar" type="submit">Borrar el Genero</button>
+            
+            <a  class="botonVolver" href="/genres">Listado de Generos</a></p>
+
+        </form>
+    </p>
+<%- include("footer.ejs") -%>

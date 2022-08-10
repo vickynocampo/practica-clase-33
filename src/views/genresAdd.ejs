@@ -1,0 +1,27 @@
+<%- include("header.ejs") -%>
+    <br>
+    <h1 class="titulo">Agregar Genero</h1>
+    <br>
+    <section class="formulario">
+        <form action="/genres/create" method="POST">
+            <label for="title">Nombre</label>
+            <p><input type="text" name="name" id="" value="<%= locals.oldData ? oldData.name : null%>"></p>
+            <% if (locals.errors && errors.name) { %>
+                <p class="mensaje-error"><%= errors.name.msg %> </p>   
+            <% } %>
+            <label for="ranking">Ranking </label>
+            <p><input type="number" name="ranking" id="" value="<%= locals.oldData ? oldData.ranking : null%>"> </p>
+            <% if (locals.errors && errors.ranking) { %>
+                <p class="mensaje-error"><%= errors.ranking.msg %> </p>   
+            <% } %>     
+            <label for="active">Active </label>
+            <p><input type="number" name="active" id="" value="<%= locals.oldData ? oldData.active : null%>"> </p>
+            <% if (locals.errors && errors.active) { %>
+                <p class="mensaje-error"><%= errors.active.msg %> </p>   
+            <% } %>                 
+            <br>
+            <p> <button class="botonAgregar" type="submit">Agregar</button>
+            <a  class="botonVolver" href="/genres">Listado de Generos</a></p>
+        </form>
+    </section>
+<%- include("footer.ejs") -%>
