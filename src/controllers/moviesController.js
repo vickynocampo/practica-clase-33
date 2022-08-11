@@ -75,7 +75,12 @@ const moviesController = {
         // //una vez que tengo los dos pedidos async me aseguro que se ejecuten juntos:
         Promise.all([pedidoPelicula, pedidosGeneros])
         .then(function([pelicula, generos]){
-             res.render("moviesEdit", {Movie: pelicula, allGenres : generos})
+            let parseDate = {
+                year: pelicula.release_date.getFullYear(),
+                month: ("0" + (pelicula.release_date.getMonth() + 1)).slice(-2),
+                date: ("0" + pelicula.release_date.getDate().toString()).slice(-2)
+            }
+             res.render("moviesEdit", {Movie: pelicula, allGenres : generos, parseDate})
         })
     },
     update: function (req,res) {       
