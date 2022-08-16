@@ -10,4 +10,7 @@ router.post('/create', moviesApiController.create);
 //Delete movie end-point
 router.delete('/delete/:id', moviesApiController.delete);
 
+//Search movie end-point
+router.get('/search', moviesApiController.search);
+
 module.exports = router;

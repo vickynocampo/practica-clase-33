@@ -37,9 +37,18 @@ const moviesApiController = {
         }
     },
     delete: async (req, res) => {
-        let resultado = await db.Movie.destroy({where:{ id: req.params.id } })
+        let resultado = await db.Movie.destroy({ where: { id: req.params.id } })
         return res.json(resultado)
+    },
+    search: async (req, res) => {
+        let search = await db.Movie.findAll(
+        { where: { title: { [Op.like]: '%' + req.query.keyword + '%' } } }
+        )
+        if (search.length > 0) {
+        return res.status(200).json(search);
+        } else {
+        return res.status(200).json("No existen peliculas");
+        }
     }
 }
-
 module.exports = moviesApiController;
